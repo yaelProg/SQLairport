@@ -1,9 +1,8 @@
 
-CREATE DATABASE Flights_db_325905206
-
+CREATE DATABASE Flights_db
 ------------------------------------------------------------------------------------
 
-USE Flights_db_325905206
+USE Flights_db
 
 CREATE TABLE AirLines_tbl
 (
@@ -124,7 +123,7 @@ AS
 	END
 GO
 
-EXECUTE InsertPassengerDetails 'דונלד', 'טראמפ','0911111111' 
+EXECUTE InsertPassengerDetails 'Matthew', 'Wilson','0911111111' 
 ------------------------------------------------------------------------------------
 
 CREATE PROCEDURE UpdateFlightDate (@FlightCode varchar(10), @NewDate date) 
@@ -138,6 +137,7 @@ GO
 
 EXECUTE UpdateFlightDate '6H664', '2023-03-17'
 ------------------------------------------------------------------------------------
+
 CREATE FUNCTION ContinueFlight (@FlightCode varchar(10)) RETURNS TABLE
 AS 
 	RETURN (SELECT f1.FlightCode, d.DestinationName, f1.FlightDate, f1.TicketPrice*0.9 AS 'Spasial Ticket Price'
@@ -173,24 +173,24 @@ GO
 
 SELECT * 
 FROM FlightDetails 
-WHERE Name = 'דוד רובינסון'
+WHERE Name = 'David Brown'
 
 ------------------------------------------------------------------------------------
 
-		DECLARE @RW SMALLINT
-		SELECT @RW = COUNT(*)
-		FROM Passengers_tbl
-		SET @RW = CAST(RAND()*@RW AS INT) + 1
+		-- DECLARE @RW SMALLINT
+		-- SELECT @RW = COUNT(*)
+		-- FROM Passengers_tbl
+		-- SET @RW = CAST(RAND()*@RW AS INT) + 1
 		
-		SELECT qry.FirstName +' '+ qry.LastName AS Name, qry.Phone,
-		CASE 
-			WHEN SUBSTRING(Phone,1,5) IN ('05832','05276','05531') THEN 'תשלח הודעה קולית'
-			WHEN Phone IS NULL THEN 'אנא צור איתנו קשר'
-			ELSE 'תשלח הודעת טקסט '
-		END 'פרטי זכייה'
-		FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY PassengerCode) AS RN
-			  FROM Passengers_tbl) qry
-		WHERE qry.RN = @RW
+		-- SELECT qry.FirstName +' '+ qry.LastName AS Name, qry.Phone,
+		-- CASE 
+		-- 	WHEN SUBSTRING(Phone,1,5) IN ('05832','05276','05531') THEN 'ֳ÷ֳ¹ֳ¬ֳ§ ֳ₪ֳ¥ֳ£ֳ²ֳ₪ ֳ·ֳ¥ֳ¬ֳ©ֳ÷'
+		-- 	WHEN Phone IS NULL THEN 'ֳ ֳ°ֳ  ֳ¶ֳ¥ֳ¸ ֳ ֳ©ֳ÷ֳ°ֳ¥ ֳ·ֳ¹ֳ¸'
+		-- 	ELSE 'ֳ÷ֳ¹ֳ¬ֳ§ ֳ₪ֳ¥ֳ£ֳ²ֳ÷ ֳ¨ֳ·ֳ±ֳ¨ '
+		-- END 'ֳ´ֳ¸ֳ¨ֳ© ֳ¦ֳ«ֳ©ֳ©ֳ₪'
+		-- FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY PassengerCode) AS RN
+		-- 	  FROM Passengers_tbl) qry
+		-- WHERE qry.RN = @RW
 		 	
 ------------------------------------------------------------------------------------	
 CREATE VIEW SumPlanesOfAirLines
@@ -292,47 +292,47 @@ GO
 --------------------------------------------------------------------
 
 INSERT INTO Destinations_tbl
-VALUES('בודפשט') 
+VALUES('Paris') 
 GO
 
 INSERT INTO Destinations_tbl
-VALUES('דובאי') 
+VALUES('London') 
 GO
 
 INSERT INTO Destinations_tbl
-VALUES('אילת') 
+VALUES('New York') 
 GO
 
 INSERT INTO Destinations_tbl
-VALUES('אמסטרדם') 
+VALUES('Tokyo') 
 GO
 
 INSERT INTO Destinations_tbl
-VALUES('לונדון') 
+VALUES('Sydney') 
 GO
 
 INSERT INTO Destinations_tbl
-VALUES('וינה') 
+VALUES('Barcelona') 
 GO
 
 INSERT INTO Destinations_tbl
-VALUES('פריז') 
+VALUES('Rome') 
 GO
 
 INSERT INTO Destinations_tbl
-VALUES('ברלין') 
+VALUES('Dubai') 
 GO
 
 INSERT INTO Destinations_tbl
-VALUES('ניו יורק') 
+VALUES('Los Angeles') 
 GO
 
 INSERT INTO Destinations_tbl
-VALUES('פלורידה') 
+VALUES('Berlin') 
 GO
 
 INSERT INTO Destinations_tbl
-VALUES('קפריסין') 
+VALUES('Moscow') 
 GO
 --------------------------------------------------------------------
 
@@ -380,47 +380,48 @@ INSERT INTO Flights_tbl
 VALUES('UA6540',106,109,470,'01/12/2023',NULL) 
 GO
 --------------------------------------------------------------------
+
 INSERT INTO Passengers_tbl
-VALUES('תמר','מילר','0583288976') 
+VALUES('John','Doe','1234567890') 
 GO
 
 INSERT INTO Passengers_tbl
-VALUES('דוד','רובינסון','0587514952') 
+VALUES('Jane','Smith','0987654321') 
 GO
 
 INSERT INTO Passengers_tbl
-VALUES('רוברט','פראנק','0524816855') 
+VALUES('Michael','Johnson','2468135790') 
 GO
 
 INSERT INTO Passengers_tbl
-VALUES('גון','גולד','0586261268') 
+VALUES('Emily','Davis','9876543210') 
 GO
 
 INSERT INTO Passengers_tbl
-VALUES('דני','גרין','0583278197') 
+VALUES('Robert','Jones','1357924680') 
 GO
 
 INSERT INTO Passengers_tbl
-VALUES('חנה','בראון','0586428318') 
+VALUES('Sarah','Williams','8642097531') 
 GO
 
 INSERT INTO Passengers_tbl
-VALUES('עליזה','שחור','0527643342') 
+VALUES('David','Brown','0123456789') 
 GO
 
 INSERT INTO Passengers_tbl
-VALUES('שולמית','פרידמן','0527618052') 
+VALUES('Jessica','Taylor','9870123456') 
 GO
 
 INSERT INTO Passengers_tbl
-VALUES('יעלי','שימל','0583282718') 
+VALUES('Christopher','Clark','4567890123') 
 GO
 
 INSERT INTO Passengers_tbl
-VALUES('מוחמד','אבו חליל',NULL) 
-GO
-
+VALUES('Jennifer','Anderson',NULL) 
+GO	
 --------------------------------------------------------------------
+
 INSERT INTO OrderTicket_tbl
 VALUES('BA458C',100,'01/01/2023',10) 
 GO
