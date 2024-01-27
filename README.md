@@ -1,25 +1,19 @@
-## code description:
+# code description:
 
-  ## This SQL project creates a database schema for managing an airport. It includes various tables, triggers, procedures, functions, and views. 
-  ## The code also inserts rows into the tables to populate them with initial data.
+  ### This SQL project creates a database schema for managing an airport. It includes various tables, triggers, procedures, functions, and views. The code also inserts rows into the tables to populate them with initial data.
   
   ## The project creates the following tables:
-  ## AirLines_tbl:
+  ### AirLines_tbl:
   Stores information about airlines, including their unique codes and names.
-  
-  ## Planes_tbl:
+  ### Planes_tbl:
   Stores information about planes, including their unique codes, associated airline codes, and the number of seats they have.
-  
-  ## Destinations_tbl:
+  ### Destinations_tbl:
   Stores information about destinations, including their unique codes and names.
-  
-  ## Flights_tbl:
+  ### Flights_tbl:
   Stores information about flights, including their unique codes, associated plane codes, destination codes, ticket prices, flight dates, and continuation flight codes.
-  
-  ## Passengers_tbl:
+  ### Passengers_tbl:
   Stores information about passengers, including their unique codes, first names, last names, and phone numbers.
-  
-  ## OrderTicket_tbl:
+  ### OrderTicket_tbl:
   Stores information about order tickets, including their unique codes, associated flight codes, passenger codes, order dates, and seat numbers.
   
   - A **trigger** that enforces seat availability constraints.
