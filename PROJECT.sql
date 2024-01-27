@@ -138,15 +138,15 @@ GO
 EXECUTE UpdateFlightDate '6H664', '2023-03-17'
 ------------------------------------------------------------------------------------
 
-CREATE FUNCTION ContinueFlight (@FlightCode varchar(10)) RETURNS TABLE
+CREATE FUNCTION connectingFlight (@FlightCode varchar(10)) RETURNS TABLE
 AS 
-	RETURN (SELECT f1.FlightCode, d.DestinationName, f1.FlightDate, f1.TicketPrice*0.9 AS 'Spasial Ticket Price'
-		    FROM (Flights_tbl f1 JOIN Flights_tbl f2 ON f1.FlightCode = f2.ContinueFlightCode) JOIN Destinations_tbl d ON f1.DestinationCode = d.DestinationCode
+	RETURN (SELECT f1.FlightCode, d.DestinationName, f1.FlightDate, f1.TicketPrice*0.9 AS 'Connecting Ticket Price'
+		    FROM (Flights_tbl f1 JOIN Flights_tbl f2 ON f1.FlightCode = f2.connectingFlightCode) JOIN Destinations_tbl d ON f1.DestinationCode = d.DestinationCode
 			WHERE f2.FlightCode = @FlightCode)
 GO
 
 SELECT *
-FROM ContinueFlight ('BA165')
+FROM connectingFlight ('BA165')
 
 ------------------------------------------------------------------------------------
 CREATE FUNCTION NumberOfPassengers (@FlightCode varchar (10))
@@ -167,8 +167,8 @@ PRINT DBO.NumberOfPassengers ('BA1359')
 CREATE VIEW FlightDetails
 AS
 	SELECT p.FirstName+' '+p.LastName AS Name, o.FlightCode AS Flight, a.AirLineName AS AirLine, d.DestinationName AS Destination, f.FlightDate AS Date, o.SeatNum AS Seat 
-	FROM (((OrderTicket_tbl o JOIN Passengers_tbl p ON o.PassengerCode = p.PassengerCode) JOIN Flights_tbl f ON o.FlightCode = f.FlightCode) 
-    JOIN Destinations_tbl d ON f.DestinationCode = d.DestinationCode) JOIN Planes_tbl pl ON f.PlaneCode = pl.PlaneCode JOIN AirLines_tbl a ON pl.AirLineCode = a.AirLineCode 
+	FROM OrderTicket_tbl o JOIN Passengers_tbl p ON o.PassengerCode = p.PassengerCode JOIN Flights_tbl f ON o.FlightCode = f.FlightCode 
+    JOIN Destinations_tbl d ON f.DestinationCode = d.DestinationCode JOIN Planes_tbl pl ON f.PlaneCode = pl.PlaneCode JOIN AirLines_tbl a ON pl.AirLineCode = a.AirLineCode 
 GO 
 
 SELECT * 
@@ -177,20 +177,20 @@ WHERE Name = 'David Brown'
 
 ------------------------------------------------------------------------------------
 
-		-- DECLARE @RW SMALLINT
-		-- SELECT @RW = COUNT(*)
-		-- FROM Passengers_tbl
-		-- SET @RW = CAST(RAND()*@RW AS INT) + 1
+		DECLARE @RW SMALLINT
+		SELECT @RW = COUNT(*)
+		FROM Passengers_tbl
+		SET @RW = CAST(RAND()*@RW AS INT) + 1
 		
-		-- SELECT qry.FirstName +' '+ qry.LastName AS Name, qry.Phone,
-		-- CASE 
-		-- 	WHEN SUBSTRING(Phone,1,5) IN ('05832','05276','05531') THEN 'úùìç äåãòä ÷åìéú'
-		-- 	WHEN Phone IS NULL THEN 'àðà öåø àéúðå ÷ùø'
-		-- 	ELSE 'úùìç äåãòú è÷ñè '
-		-- END 'ôøèé æëééä'
-		-- FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY PassengerCode) AS RN
-		-- 	  FROM Passengers_tbl) qry
-		-- WHERE qry.RN = @RW
+		SELECT qry.FirstName +' '+ qry.LastName AS Name, qry.Phone,
+		CASE 
+			WHEN SUBSTRING(Phone,1,5) IN ('05832','05276','05531') THEN 'úùìç äåãòä ÷åìéú'
+			WHEN Phone IS NULL THEN 'àðà öåø àéúðå ÷ùø'
+			ELSE 'úùìç äåãòú è÷ñè '
+		END 'ôøèé æëééä'
+		FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY PassengerCode) AS RN
+			  FROM Passengers_tbl) qry
+		WHERE qry.RN = @RW
 		 	
 ------------------------------------------------------------------------------------	
 CREATE VIEW SumPlanesOfAirLines
