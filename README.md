@@ -1,7 +1,7 @@
 # code description:
 
   ### This SQL project creates a database schema for managing an airport. It includes various tables, triggers, procedures, functions, and views. The code also inserts rows into the tables to populate them with initial data.
-![erd](https://github.com/yaelProg/SQLairport/assets/156606079/7d3bd15c-7849-4534-a3b3-f761b072e33e)  
+![Capture](https://github.com/yaelProg/SQLairport/assets/156606079/1f80d93f-fd82-45d7-9e6b-2c8dd27c11b0)
   ## The project creates the following tables:
   ### AirLines_tbl:
   Stores information about airlines, including their unique codes and names.
