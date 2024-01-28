@@ -33,7 +33,7 @@ CREATE TABLE Flights_tbl
 	DestinationCode int references Destinations_tbl,
 	TicketPrice money,
 	FlightDate date,
-	ContinueFlightCode varchar (10) 
+	ConnectingFlightCode varchar (10) 
 )
 GO
 
