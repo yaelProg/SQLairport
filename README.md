@@ -1,6 +1,8 @@
 # code description:
 
   ### This SQL project creates a database schema for managing an airport. It includes various tables, triggers, procedures, functions, and views. The code also inserts rows into the tables to populate them with initial data.
+
+![erd](https://github.com/yaelProg/SQLairport/assets/156606079/7d3bd15c-7849-4534-a3b3-f761b072e33e)
   
   ## The project creates the following tables:
   ### AirLines_tbl:
@@ -15,8 +17,6 @@
   Stores information about passengers, including their unique codes, first names, last names, and phone numbers.
   ### OrderTicket_tbl:
   Stores information about order tickets, including their unique codes, associated flight codes, passenger codes, order dates, and seat numbers.
-
-![erd](https://github.com/yaelProg/SQLairport/assets/156606079/7d3bd15c-7849-4534-a3b3-f761b072e33e)
   
   - A **trigger** that enforces seat availability constraints.
   - A **trigger** that enforces that orders are placed before the flight date.
