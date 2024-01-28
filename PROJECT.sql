@@ -1,8 +1,8 @@
 
-CREATE DATABASE Flights_db
+CREATE DATABASE AirLine_db
 ------------------------------------------------------------------------------------
 
-USE Flights_db
+USE AirLine_db
 
 CREATE TABLE AirLines_tbl
 (
