@@ -21,8 +21,9 @@
   - A **procedure** that inserts a new passanger into the passengers table.
   - A **procedure** that updates a flight's date to a new provided date.
   - A **function** that finds connecting flights and calculates their price with a 10% discount.
-  - A **function** that returns the number of passengers for a given flight code.
-  - A **function** that selects randomly a passenger from among all passengers whose phone number prefix belongs to a certain company and calculates the price of his flight ticket with a discount.
+  - A **query** that returns the number of passengers for a given flight code.
+  - A **query** that finds the next cheapest flight
+  - A **function** that selects randomly a passenger from among all passengers.
   - A **view** that combines data from multiple tables to provide detailed information about flights and passengers.
   - A **view** that calculates the size of each airline company based on the number of planes they have.
 
