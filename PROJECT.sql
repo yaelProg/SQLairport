@@ -176,22 +176,24 @@ FROM FlightDetails
 WHERE Name = 'David Brown'
 
 ------------------------------------------------------------------------------------
+	
+SELECT TOP 1 f.FlightCode, d.DestinationName, f.TicketPrice
+FROM Flights_tbl f JOIN Destinations_tbl d 
+ON f.DestinationCode = d.DestinationCode
+WHERE f.FlightDate >= CAST(GETDATE() AS DATE)
+ORDER BY f.TicketPrice ASC
+	
+------------------------------------------------------------------------------------
 
-		DECLARE @RW SMALLINT
-		SELECT @RW = COUNT(*)
-		FROM Passengers_tbl
-		SET @RW = CAST(RAND()*@RW AS INT) + 1
-		
-		SELECT qry.FirstName +' '+ qry.LastName AS Name, qry.Phone,
-		CASE 
-			WHEN SUBSTRING(Phone,1,5) IN ('05832','05276','05531') THEN 'úùìç äåãòä ÷åìéú'
-			WHEN Phone IS NULL THEN 'àðà öåø àéúðå ÷ùø'
-			ELSE 'úùìç äåãòú è÷ñè '
-		END 'ôøèé æëééä'
-		FROM (SELECT *, ROW_NUMBER() OVER(ORDER BY PassengerCode) AS RN
-			  FROM Passengers_tbl) qry
-		WHERE qry.RN = @RW
-		 	
+DECLARE @RW SMALLINT;
+SELECT @RW = COUNT(*) FROM Passengers_tbl;
+SET @RW = CAST(RAND() * @RW AS INT) + 1;
+
+SELECT *
+FROM (SELECT *, ROW_NUMBER() OVER (ORDER BY PassengerCode) AS RN
+      FROM Passengers_tbl) AS qry
+WHERE qry.RN = @RW;
+
 ------------------------------------------------------------------------------------	
 CREATE VIEW SumPlanesOfAirLines
 AS
